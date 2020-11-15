@@ -1,5 +1,6 @@
 # Projeto - Integração dos Exemplos
 
+![](https://lh3.googleusercontent.com/proxy/cJzAeRbH1F1_-NGB9k2z_xLnoZ2vssf1b5Y7UNlflydtwIMkh_4N5JamOZlQktenzLRb29Nwjio4XnBwHj0-ZiCgadJbO7MwlLOxgS2tDLI8taAge6s)
 
 ## **Sumário**
 
@@ -15,13 +16,13 @@ Integrar o projeto de WiFi com GPIO com o projeto de Socket TCP, utilizando do e
 
 ## **Requisitos**
 
-Pré-requisitos
+###Pré-requisitos
 	
 * ESP8266 Toolchain
 * ESP8266 RTOS SDK
 * ESP8266 Python Packages
 
-Componentes utilizados:
+###Componentes utilizados:
 
 * WeMos D1 R2
 * ESP8266
@@ -29,8 +30,9 @@ Componentes utilizados:
 * Sensor de distância HC-SR04
 * Botão
 
-Recursos utilizados:
--> Linguagem C
+###Recursos utilizados:
+
+####Linguagem C
 
 * GPIO Driver
 * FreeRTOS Tasks
@@ -65,13 +67,19 @@ make menuconfig
 
 3. No menu de configuração, navegue até **_Serial flasher config_** -> **_Default serial port_** e digite o nome da
    porta usada.
-   Salve as alterações utilizando a opção <Save> e volte ao menu principal através da opção <Exit>.
+   
+![serial](https://user-images.githubusercontent.com/74508536/99197360-ccc1b780-2770-11eb-8a6e-c981e5e57fd6.png)
+
+Salve as alterações utilizando a opção *Save* e volte ao menu principal através da opção <Exit>.
 
 4. Em seguida, navegue até **_configuração do projeto_** e informe o SSID e senha da rede WiFi, escolha entre
    IPv4 e IPv6 e a porta do servidor TCP.
-   Salve as alterações utilizando a opção <Save>.
 
-Após realizar todas as configurações utilize a opção <Exit>.
+![config](https://user-images.githubusercontent.com/74508536/99197387-f8dd3880-2770-11eb-9611-f08267241561.png)
+
+Salve as alterações utilizando a opção *Save*.
+
+Após realizar todas as configurações utilize a opção *Exit*.
 
 
 ### **Build e Flash**
