@@ -16,13 +16,13 @@ Integrar o projeto de WiFi com GPIO com o projeto de Socket TCP, utilizando do e
 
 ## **Requisitos**
 
-###Pré-requisitos
+### Pré-requisitos
 	
 * ESP8266 Toolchain
 * ESP8266 RTOS SDK
 * ESP8266 Python Packages
 
-###Componentes utilizados:
+### Componentes utilizados:
 
 * WeMos D1 R2
 * ESP8266
@@ -30,9 +30,9 @@ Integrar o projeto de WiFi com GPIO com o projeto de Socket TCP, utilizando do e
 * Sensor de distância HC-SR04
 * Botão
 
-###Recursos utilizados:
+### Recursos utilizados:
 
-####Linguagem C
+#### Linguagem C
 
 * GPIO Driver
 * FreeRTOS Tasks
@@ -70,7 +70,7 @@ make menuconfig
    
 ![serial](https://user-images.githubusercontent.com/74508536/99197360-ccc1b780-2770-11eb-8a6e-c981e5e57fd6.png)
 
-Salve as alterações utilizando a opção *Save* e volte ao menu principal através da opção <Exit>.
+Salve as alterações utilizando a opção *Save* e volte ao menu principal através da opção *Exit*.
 
 4. Em seguida, navegue até **_configuração do projeto_** e informe o SSID e senha da rede WiFi, escolha entre
    IPv4 e IPv6 e a porta do servidor TCP.
