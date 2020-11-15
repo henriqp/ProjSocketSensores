@@ -38,7 +38,7 @@ Integrar o projeto de WiFi com GPIO com o projeto de Socket TCP, utilizando do e
 * GPIO Driver
 * FreeRTOS Tasks
 * FreeRTOS Event Groups
-* FreeRTOS Queue
+* FreeRTOS Queues
 * FreeRTOS lwIP Sockets
 * ESP WiFi
 * ESP Non-volatile storage
@@ -94,6 +94,8 @@ make flash monitor
 
 ## Funcionamento
 
+### Aplicação
+
 A aplicação inicializa o armazenamento não volátil e as configurações do WiFi do ESP8266. Em seguida, são criadas as
 filas e as tarefas do FreeRTOS para conexão com WiFi, leituras dos sensores de temperatura e distância e inicialização
 do servidor TCP.
@@ -126,3 +128,12 @@ os valores em uma estrutura que é enviada para a fila criada.
 A task *task_CriarTCPServer* recebe os valores das tasks de leitura através da fila, então, é verificado a informação
 que o usuário requisitou para enviar a respectiva informação.
 
+
+### Cliente
+
+O cliente se conecta com o servidor informando o IP e a porta do servidor. Ao se conectar, o usuário recebe um menu
+com as opções de visualização.
+
+O cliente informa a opção e espera a resposta do servidor.
+
+![cliente](https://user-images.githubusercontent.com/74508536/99199985-8cb70080-2781-11eb-87cc-505ed656bab0.png)
