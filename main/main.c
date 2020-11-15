@@ -60,8 +60,12 @@ typedef struct
 {
   int16_t temperatura;
   int16_t umidade;
-  int32_t distancia;
 } Data_t;
+
+typedef struct
+{
+  int32_t distancia;
+} Data_d;
 
 static const char * TAG = "wifi station: ";
 static EventGroupHandle_t s_wifi_event_group;
@@ -69,8 +73,8 @@ static EventGroupHandle_t s_wifi_event_group;
 static const dht_sensor_type_t sensor_type = DHT_TYPE_DHT11;
 static const gpio_num_t dht_gpio = 16;
 
-QueueHandle_t queue;
-Data_t data;
+QueueHandle_t queueTempUmid;
+QueueHandle_t queueDist;
 
 static void event_handler(void* arg, esp_event_base_t event_base, int32_t event_id, void* event_data);
 static void wifi_init_sta(void);
@@ -202,6 +206,7 @@ void task_LerTemperaturaUmidade(void *pvParameters)
 {
 	int16_t temperatura;
 	int16_t umidade;
+    Data_t data;
 
     while (1)
     {
@@ -210,7 +215,7 @@ void task_LerTemperaturaUmidade(void *pvParameters)
     		data.temperatura = temperatura / 10;
 	    	data.umidade = umidade / 10;
 
-	        xQueueOverwrite(queue, &data);
+	        xQueueOverwrite(queueTempUmid, &data);
     	}
 
         vTaskDelay(2000 / portTICK_PERIOD_MS);
@@ -227,6 +232,7 @@ void task_lerDistancia(void *pvParamters)
     ultrasonic_init(&sensor);
 
     uint32_t distancia;
+    Data_d data;
 
     while (1)
     {
@@ -255,7 +261,7 @@ void task_lerDistancia(void *pvParamters)
         {
         	data.distancia = distancia;
 
-        	xQueueOverwrite(queue, &data);
+        	xQueueOverwrite(queueDist, &data);
         }
 
         vTaskDelay(500 / portTICK_PERIOD_MS);
@@ -272,6 +278,9 @@ void task_CriarTCPServer(void *pvParameters)
     char menu[128];
     int addr_family;
     int ip_protocol;
+
+    Data_t dataTempUmid;
+    Data_d dataDist;
 
     while (1) {
         xEventGroupWaitBits(s_wifi_event_group, WIFI_CONNECTED_BIT, pdFALSE, pdFALSE, portMAX_DELAY);
@@ -367,25 +376,28 @@ void task_CriarTCPServer(void *pvParameters)
                 ESP_LOGI(TAG, "Received %d bytes from %s:", len, addr_str);
                 ESP_LOGI(TAG, "%s", rx_buffer);
 
-                if(xQueueReceive(queue, &data, pdMS_TO_TICKS(0)) == true)
+                if(xQueueReceive(queueTempUmid, &dataTempUmid, pdMS_TO_TICKS(0)) == true)
                 {
                 	if(rx_buffer[0] == 'T' && rx_buffer[1] == 'E' && rx_buffer[2] == 'M' && rx_buffer[3] == 'P')
                 	{
-                		sprintf(temperatura, "Temperatura: %d°C\n", data.temperatura);
+                		sprintf(temperatura, "Temperatura: %d°C\n", dataTempUmid.temperatura);
                 		send(sock, temperatura, strlen(temperatura), 0);
                 	}
 
                 	if(rx_buffer[0] == 'U' && rx_buffer[1] == 'M' && rx_buffer[2] == 'I' && rx_buffer[3] == 'D')
                 	{
-                		sprintf(umidade, "Umidade: %d%%\n", data.umidade);
+                		sprintf(umidade, "Umidade: %d%%\n", dataTempUmid.umidade);
                 		send(sock, umidade, strlen(umidade), 0);
                 	}
+                }
 
-                	if(rx_buffer[0] == 'D' && rx_buffer[1] == 'I' && rx_buffer[2] == 'S' && rx_buffer[3] == 'T')
-                	{
-                		sprintf(distancia, "Distância: %dcm\n", data.distancia);
-                		send(sock, distancia, strlen(distancia), 0);
-                	}
+                if(xQueueReceive(queueDist, &dataDist, pdMS_TO_TICKS(0)) == true)
+                {
+                    if(rx_buffer[0] == 'D' && rx_buffer[1] == 'I' && rx_buffer[2] == 'S' && rx_buffer[3] == 'T')
+                    {
+                        sprintf(distancia, "Distância: %dcm\n", dataDist.distancia);
+                        send(sock, distancia, strlen(distancia), 0);
+                    }
                 }
             }
         }
@@ -414,7 +426,8 @@ void app_main()
 
     wifi_init_sta();
 
-    queue = xQueueCreate(10, sizeof(Data_t));
+    queueTempUmid = xQueueCreate(10, sizeof(Data_t));
+    queueDist = xQueueCreate(10, sizeof(Data_d));
 
     xTaskCreate(task_sinalizarConexaoWifi, "task_sinalizarConexaoWifi", 2048, NULL, 5, NULL );
     xTaskCreate(task_reconectarWifi, "task_reconectarWifi", 2048, NULL, 5, NULL );

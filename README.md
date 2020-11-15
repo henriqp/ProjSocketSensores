@@ -7,6 +7,7 @@
 * Introdução
 * Requisitos
 * Execução
+* Funcionamento
 
 
 ## **Introdução**
@@ -89,3 +90,39 @@ Para compilar o aplicativo e todos os componentes e monitorar a execução do ap
 ```
 make flash monitor
 ```
+
+
+## Funcionamento
+
+A aplicação inicializa o armazenamento não volátil e as configurações do WiFi do ESP8266. Em seguida, são criadas as
+filas e as tarefas do FreeRTOS para conexão com WiFi, leituras dos sensores de temperatura e distância e inicialização
+do servidor TCP.
+
+* *task_sinalizarConexaoWifi*
+* *task_reconectarWifi*
+* *task_CriarTCPServer*
+* *task_LerTemperaturaUmidade*
+* *task_lerDistancia*
+
+A função *event_handler* tem a finalidade de realizar a conexão com o WiFi local, sendo utilizados Event Groups
+para indicar a situação da conexão para as demais tarefas e impedir que a criação do servidor TCP seja realizada
+sem estar conectado com o WiFi local.
+
+A task *task_sinalizarConexaoWifi* sinaliza através do *LED BUILDING* o status da conexão com o WiFi.
+* 500ms - WiFi conectando
+* 100ms - WiFi falhou
+* 10ms - WiFi conectado
+
+Quando ocorrer falha na conexão do WiFi, a tarefa *task_reconectarWifi* é desbloqueada para tentar nova conexão.
+A tarefa de reconexão lê um botão que ao ser pressionado tenta reconectar novamento ao WiFi.
+
+Ao se conectar ao WiFi é desbloqueado a task *task_CriarTCPServer* para criar o servidor TCP. Esta tarefa faz a
+configuração do socket e espera pela conexão dos clientes. Quando um cliente se conecta, o socket aceita a conexão
+e espera por mensagens vindas do cliente.
+
+As tasks *task_LerTemperaturaUmidade* e *task_lerDistancia* leem as informações dos sensores conectados, salvando
+os valores em uma estrutura que é enviada para a fila criada.
+
+A task *task_CriarTCPServer* recebe os valores das tasks de leitura através da fila, então, é verificado a informação
+que o usuário requisitou para enviar a respectiva informação.
+
