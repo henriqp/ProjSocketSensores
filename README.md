@@ -3,9 +3,9 @@
 
 ## **Sumário**
 
-	* Introdução
-	* Requisitos
-	* Execução
+* Introdução
+* Requisitos
+* Execução
 
 
 ## **Introdução**
@@ -17,64 +17,67 @@ Integrar o projeto de WiFi com GPIO com o projeto de Socket TCP, utilizando do e
 
 Pré-requisitos
 	
-	* ESP8266 Toolchain
-	* ESP8266 RTOS SDK
-	* ESP8266 Python Packages
+* ESP8266 Toolchain
+* ESP8266 RTOS SDK
+* ESP8266 Python Packages
 
 Componentes utilizados:
 
-	* WeMos D1 R2
-	* ESP8266
-	* Sensor de temperatura e umidade DHT11
-	* Sensor de distância HC-SR04
-	* Botão
+* WeMos D1 R2
+* ESP8266
+* Sensor de temperatura e umidade DHT11
+* Sensor de distância HC-SR04
+* Botão
 
 Recursos utilizados:
-   -> Linguagem C
+-> Linguagem C
 
-	* GPIO Driver
-	* FreeRTOS Tasks
-	* FreeRTOS Event Groups
-	* FreeRTOS Queue
-	* FreeRTOS lwIP Sockets
-	* ESP WiFi
-	* ESP Non-volatile storage
-	* Biblioteca DHT & Ultrasonic
+* GPIO Driver
+* FreeRTOS Tasks
+* FreeRTOS Event Groups
+* FreeRTOS Queue
+* FreeRTOS lwIP Sockets
+* ESP WiFi
+* ESP Non-volatile storage
+* Biblioteca DHT & Ultrasonic
 
 ## **Execução**
 
 ### **Conectar**
 	
-	Conecte o ESP8266 no PC em uma porta USB e verifique se a comunicação serial funciona. O nome da porta será usado na configuração do projeto.
+Conecte o ESP8266 no PC em uma porta USB e verifique se a comunicação serial funciona.
+O nome da porta será usado na configuração do projeto.
 
 
 ### **Configurar**
 	
-	1. Através do terminal, vá até o diretorio do projeto.
+1. Através do terminal, vá até o diretorio do projeto.
 
-	```
-	cd ~/ProjSocketSensores
-	```
+```
+cd ~/ProjSocketSensores
+```
 
-	2. Em seguida, execute o comando:
+2. Em seguida, execute o comando:
 
-	```
-	make menuconfig
-	```
+```
+make menuconfig
+```
 
-	3. No menu de configuração, navegue até *Serial flasher config* -> *Default serial port* e digite o nome da porta usada. 
-	   Salve as alterações utilizando a opção <Save> e volte ao menu principal através da opção <Exit>.
+3. No menu de configuração, navegue até **_Serial flasher config_** -> **_Default serial port_** e digite o nome da
+   porta usada.
+   Salve as alterações utilizando a opção <Save> e volte ao menu principal através da opção <Exit>.
 
-	4. Em seguida, navegue até *configuração do projeto* e informe o SSID e senha da rede WiFi, escolha entre IPv4 e IPv6 e a porta do servidor TCP.
-	   Salve as alterações utilizando a opção <Save>.
+4. Em seguida, navegue até **_configuração do projeto_** e informe o SSID e senha da rede WiFi, escolha entre
+   IPv4 e IPv6 e a porta do servidor TCP.
+   Salve as alterações utilizando a opção <Save>.
 
-    Após realizar todas as configurações utilize a opção <Exit>.
+Após realizar todas as configurações utilize a opção <Exit>.
 
 
 ### **Build e Flash**
 
-	Para compilar o aplicativo e todos os componentes e monitorar a execução do aplicativo utilizar o comando:
+Para compilar o aplicativo e todos os componentes e monitorar a execução do aplicativo utilizar o comando:
 
-	```
-	make flash monitor
-	```
+```
+make flash monitor
+```
