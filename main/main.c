@@ -36,25 +36,25 @@ Pinos-WeMos             Função                  Pino-ESP-8266
 #include "lwip/sys.h"
 #include <lwip/netdb.h>
 
-#define TRUE  1
-#define FALSE 0
-#define DEBUG TRUE
+#define TRUE                1
+#define FALSE               0
+#define DEBUG               TRUE
 
-#define LED_BUILDING    GPIO_NUM_2
-#define BUTTON          GPIO_NUM_0
+#define LED_BUILDING        GPIO_NUM_2
+#define BUTTON              GPIO_NUM_0
 
-#define EXAMPLE_ESP_WIFI_SSID   "Piati"
-#define EXAMPLE_ESP_WIFI_PASS   "core1234"
+#define WIFI_SSID           CONFIG_WIFI_SSID
+#define WIFI_PASS           CONFIG_WIFI_PASSWORD
 
 #define WIFI_CONNECTING_BIT BIT0
 #define WIFI_CONNECTED_BIT  BIT1
 #define WIFI_FAIL_BIT       BIT2
 
-#define MAX_DISTANCE_CM 500
-#define TRIGGER_GPIO 4
-#define ECHO_GPIO 5
+#define MAX_DISTANCE_CM     500
+#define TRIGGER_GPIO        4
+#define ECHO_GPIO           5
 
-#define PORT CONFIG_EXAMPLE_PORT
+#define PORT                CONFIG_SERVER_PORT
 
 typedef struct
 {
@@ -126,8 +126,8 @@ void wifi_init_sta(void)
 
     wifi_config_t wifi_config = {
         .sta = {
-            .ssid = EXAMPLE_ESP_WIFI_SSID,
-            .password = EXAMPLE_ESP_WIFI_PASS
+            .ssid = WIFI_SSID,
+            .password = WIFI_PASS
         },
     };
 
@@ -276,7 +276,7 @@ void task_CriarTCPServer(void *pvParameters)
     while (1) {
         xEventGroupWaitBits(s_wifi_event_group, WIFI_CONNECTED_BIT, pdFALSE, pdFALSE, portMAX_DELAY);
 
-        #ifdef CONFIG_EXAMPLE_IPV4
+        #ifdef CONFIG_IP_MODE_IPV4
             struct sockaddr_in destAddr;
             destAddr.sin_addr.s_addr = htonl(INADDR_ANY);
             destAddr.sin_family = AF_INET;
@@ -321,7 +321,7 @@ void task_CriarTCPServer(void *pvParameters)
 
         ESP_LOGI(TAG, "Socket listening");
 
-        #ifdef CONFIG_EXAMPLE_IPV6
+        #ifdef CONFIG_IP_MODE_IPV6
             struct sockaddr_in6 sourceAddr;
         #else
             struct sockaddr_in sourceAddr;
@@ -353,7 +353,7 @@ void task_CriarTCPServer(void *pvParameters)
                 break;
             }
             else {
-                #ifdef CONFIG_EXAMPLE_IPV6
+                #ifdef CONFIG_IP_MODE_IPV6
                     if (sourceAddr.sin6_family == PF_INET) {
                         inet_ntoa_r(((struct sockaddr_in *)&sourceAddr)->sin_addr.s_addr, addr_str, sizeof(addr_str) - 1);
                     } else if (sourceAddr.sin6_family == PF_INET6) {

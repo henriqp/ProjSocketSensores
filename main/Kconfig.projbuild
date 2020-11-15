@@ -1,20 +1,32 @@
-menu "Example Configuration"
+menu "Configuração do projeto"
 
-choice EXAMPLE_IP_MODE
+config WIFI_SSID
+    string "WiFi SSID"
+    default "meu_ssid"
+    help
+        SSID (network name) for the example to connect to.
+
+config WIFI_PASSWORD
+    string "WiFi Password"
+    default "meu_password"
+    help
+        WiFi password (WPA or WPA2) for the example to use.
+
+choice IP_MODE
     prompt "IP Version"
     help
        Example can use either IPV4 or IPV6.
 
-config EXAMPLE_IPV4
+config IP_MODE_IPV4
     bool "IPV4"
 
-config EXAMPLE_IPV6
+config IP_MODE_IPV6
    bool "IPV6"
-   select EXAMPLE_CONNECT_IPV6
+   select CONNECT_IPV6
 
 endchoice
 
-config EXAMPLE_PORT
+config SERVER_PORT
     int "Port"
     range 0 65535
     default 3333
