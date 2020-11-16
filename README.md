@@ -4,9 +4,12 @@
 
 ## **Sumário**
 
-[Introdução](#introducao)
+[Introducao](#introducao)
+
 [Requisitos](#requisitos)
-[Execução](#execucao)
+
+[Execucao](#execucao)
+
 [Funcionamento](#funcionamento)
 
 
