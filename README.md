@@ -50,15 +50,15 @@ Integrar o projeto de WiFi com GPIO com o projeto de Socket TCP, utilizando do e
 
 ### Circuito eletrônico
 
-![circuito](https://user-images.githubusercontent.com/74508536/99252367-9a09d480-27ed-11eb-8220-c9f611d73ae5.jpeg)
+![circuito](https://user-images.githubusercontent.com/74508536/99253370-62039100-27ef-11eb-8d94-2276312984b7.png)
 
 Os componentes foram ligados nos seguintes pinos da GPIO, conforme o trecho de código:
 
 ```
 #define LED_BUILDING       GPIO_NUM_2 	//LED DE SINALIZAÇÃO DO WIFI
 #define BUTTON             GPIO_NUM_0	//BOTÃO PARA RECONECTAR WIFI
-#define TRIGGER_GPIO        		4	//TRIGGER - SENSOR HC-SR04
-#define ECHO_GPIO           		5	//ECHO - SENSOR HC-SR04
+#define TRIGGER_GPIO        	4	//TRIGGER - SENSOR HC-SR04
+#define ECHO_GPIO           	5	//ECHO - SENSOR HC-SR04
 static const gpio_num_t dht_gpio = 16;	//DADOS - SENSOR DHT11
 ```
 
