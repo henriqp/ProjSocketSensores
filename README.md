@@ -57,8 +57,8 @@ Os componentes foram ligados nos seguintes pinos da GPIO, conforme o trecho de c
 ```
 #define LED_BUILDING       GPIO_NUM_2 	//LED DE SINALIZAÇÃO DO WIFI
 #define BUTTON             GPIO_NUM_0	//BOTÃO PARA RECONECTAR WIFI
-#define TRIGGER_GPIO        		4//TRIGGER - SENSOR HC-SR04
-#define ECHO_GPIO           		5//ECHO - SENSOR HC-SR04
+#define TRIGGER_GPIO        	  4 //TRIGGER - SENSOR HC-SR04
+#define ECHO_GPIO                 5 //ECHO - SENSOR HC-SR04
 static const gpio_num_t dht_gpio = 16;	//DADOS - SENSOR DHT11
 ```
 
