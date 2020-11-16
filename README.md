@@ -2,6 +2,7 @@
 
 ![](https://lh3.googleusercontent.com/proxy/cJzAeRbH1F1_-NGB9k2z_xLnoZ2vssf1b5Y7UNlflydtwIMkh_4N5JamOZlQktenzLRb29Nwjio4XnBwHj0-ZiCgadJbO7MwlLOxgS2tDLI8taAge6s)
 
+
 ## **Sumário**
 
 * [Resumo](#resumo)
@@ -44,7 +45,23 @@ Integrar o projeto de WiFi com GPIO com o projeto de Socket TCP, utilizando do e
 * ESP Non-volatile storage
 * Biblioteca DHT & Ultrasonic
 
+
 ## **Executar**
+
+### Circuito eletrônico
+
+![circuito](https://user-images.githubusercontent.com/74508536/99252367-9a09d480-27ed-11eb-8220-c9f611d73ae5.jpeg)
+
+Os componentes foram ligados nos seguintes pinos da GPIO, conforme o trecho de código:
+
+```
+#define LED_BUILDING       GPIO_NUM_2 	//LED DE SINALIZAÇÃO DO WIFI
+#define BUTTON             GPIO_NUM_0	//BOTÃO PARA RECONECTAR WIFI
+#define TRIGGER_GPIO        		4	//TRIGGER - SENSOR HC-SR04
+#define ECHO_GPIO           		5	//ECHO - SENSOR HC-SR04
+static const gpio_num_t dht_gpio = 16;	//DADOS - SENSOR DHT11
+```
+
 
 ### **Conectar**
 	
