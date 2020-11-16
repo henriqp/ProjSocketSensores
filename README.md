@@ -4,13 +4,10 @@
 
 ## **Sumário**
 
-[Resumo](#resumo)
-
-[Requisitos](#requisitos)
-
-[Executar](#executar)
-
-[Funcionamento](#funcionamento)
+* [Resumo](#resumo)
+* [Requisitos](#requisitos)
+* [Executar](#executar)
+* [Funcionamento](#funcionamento)
 
 
 ## **Resumo**
