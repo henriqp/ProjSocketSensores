@@ -4,16 +4,16 @@
 
 ## **Sumário**
 
-[Introducao](#introducao)
+[Resumo](#resumo)
 
 [Requisitos](#requisitos)
 
-[Execucao](#execucao)
+[Executar](#executar)
 
 [Funcionamento](#funcionamento)
 
 
-## **Introdução**
+## **Resumo**
 
 Integrar o projeto de WiFi com GPIO com o projeto de Socket TCP, utilizando do exemplo de Socket TCP server. O objetivo final é ter um sistema que consiga monitorar o status do WiFi do ESP8266 através de um LED, utilizar um botão para tentar nova conexão de WiFi e, quando conectado, criar um servidor Socket TCP para que algum cliente (App de celular, por exemplo) possa realizar a conexão e requisitar a informação dos sensores.
 
@@ -47,7 +47,7 @@ Integrar o projeto de WiFi com GPIO com o projeto de Socket TCP, utilizando do e
 * ESP Non-volatile storage
 * Biblioteca DHT & Ultrasonic
 
-## **Execução**
+## **Executar**
 
 ### **Conectar**
 	
