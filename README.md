@@ -123,7 +123,7 @@ do servidor TCP.
 * *task_LerTemperaturaUmidade*
 * *task_lerDistancia*
 
-A função *event_handler* tem a finalidade de realizar a conexão com o WiFi local, sendo utilizados Event Groups
+A função *event_handler* tem a finalidade de receber os eventos de conexão do WiFi, sendo utilizados Event Groups
 para indicar a situação da conexão para as demais tarefas e impedir que a criação do servidor TCP seja realizada
 sem estar conectado com o WiFi local.
 
