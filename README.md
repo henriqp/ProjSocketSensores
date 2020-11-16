@@ -4,10 +4,10 @@
 
 ## **Sumário**
 
-* Introdução
-* Requisitos
-* Execução
-* Funcionamento
+[Introdução](#introducao)
+[Requisitos](#requisitos)
+[Execução](#execucao)
+[Funcionamento](#funcionamento)
 
 
 ## **Introdução**
