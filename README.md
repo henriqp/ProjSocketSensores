@@ -9,6 +9,7 @@
 * [Requisitos](#requisitos)
 * [Executar](#executar)
 * [Funcionamento](#funcionamento)
+* [Video demonstrativo](#video-demonstrativo)
 
 
 ## **Resumo**
@@ -154,3 +155,8 @@ com as opções de visualização.
 O cliente informa a opção e espera a resposta do servidor.
 
 ![cliente](https://user-images.githubusercontent.com/74508536/99199985-8cb70080-2781-11eb-87cc-505ed656bab0.png)
+
+
+## Video demonstrativo
+
+[![link-youtube](https://user-images.githubusercontent.com/74508536/99397310-a6f7f800-28c1-11eb-942b-60977dc83bca.png)](https://www.youtube.com/watch?v=xQ6whNiIDaE "Projeto - Integração dos Exemplos")
